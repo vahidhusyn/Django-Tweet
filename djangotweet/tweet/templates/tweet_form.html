@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Django Tweet
+{% endblock %}
+
+{% block content %}
+
+
+<div class="items-center text-center">
+
+<h2 class="text-4xl mb-4">
+    {%if form.instance.pk %}
+    Edit Tweet:
+    {% else %}
+    Create Tweet:
+    {%endif%}
+</h2>
+
+<form method="post" enctype="multipart/form-data" class="mx-auto">
+    
+    {% csrf_token %}
+    
+    <div class="flex items-start justify-center">
+            <label class="items-start mt-6">{{form.text.label}}</label>
+        <div class="">
+            {{form.text}}
+        </div>
+        
+    </div>
+
+    <div class="text-center my-2">
+        <label>{{form.photo.label}}</label>
+    
+        {{form.photo}}
+    </div>
+    
+    <button type="submit" class="inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2.5 me-2 mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer">Submit</button>
+
+    <a href="{% url "tweet_list" %}" class="inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2.5 me-2 mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Back to tweet list</a>
+
+</form>
+
+
+</div>
+
+{% endblock %}

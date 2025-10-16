@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Django Tweet
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+
+    
+<h1 class="text-amber-300 text-4xl m-4">Are you sure to delete this post?</h1>
+
+<div class="max-w-sm h-full mx-auto my-4 bg-white border border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700">
+            <img class="w-120 h-60 rounded-t-lg object-contain place-items-start" src="{{tweet.photo.url}}" alt="yooo"/>
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{tweet.user.username}}</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{tweet.text}}</p>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 cursor-pointer">Delete</button>
+    <a href="{% url 'tweet_list' %}" class="inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2.5 me-2 mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cancel</a>
+</form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+Django Tweet
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-amber-100 text-4xl text-center my-5 animate__animated animate__jackInTheBox font-poppins  hover:cursor-default">Welcome to <span class="hover:text-amber-500" >Django Tweet</span></h1>
+
+<p class="my-6 mx-40 text-center text-wrap">Share your thoughts with the whole world and see what everyone is upto using the power of Django.<br> Simply create a tweet below and get started. You can also edit and delete your tweets easily.</p>
+
+<div class="text-center">
+    <a href="{% url 'tweet_create'%}" class="inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2.5 mb-8 mx-auto dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create a tweet</a>
+</div>
+
+<div class="grid grid-cols-1 gap-2 place-items-center md:grid-cols-3 lg:grid-cols-4">
+
+    {% for tweet in tweets %}
+
+    {% comment %} <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"> {% endcomment %}
+    
+    <div class="max-w-sm h-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+            <img class="w-100 h-50 rounded-t-lg object-contain place-items-start" src="{{tweet.photo.url}}" alt="yooo"/>
+        <div class="p-5">
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{tweet.user.username}}</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{tweet.text}}</p>
+
+            {%if tweet.user == user %}
+            <a href="{% url 'tweet_edit' tweet.id %}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Edit
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+            </a>
+            <a href="{% url 'tweet_delete' tweet.id %}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                Delete
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

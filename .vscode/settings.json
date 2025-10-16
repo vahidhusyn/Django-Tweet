@@ -1,0 +1,9 @@
+{
+    // Is Git enabled
+    "git.enabled": true,
+
+    // Path to the Git executable
+    "git.path": "I:\\Programs\\Git"
+
+    // Other settings
+}
