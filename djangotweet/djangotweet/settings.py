@@ -72,7 +72,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
+ 
 ]
 
 GOOGLE_FONTS = ["Kablammo", "Roboto"]
@@ -104,16 +104,16 @@ DATABASES = {
     
     #This was development testing database
     
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': BASE_DIR / 'db.sqlite3',
-    #}
+    'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
+    }
 
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='DATABASE_URL',
-        conn_max_age=600
-    )
+    # 'default': dj_database_url.config(
+    #     # Replace this value with your local database's connection string.
+    #     default='DATABASE_URL',
+    #     conn_max_age=600
+    # )
 
 }
 
