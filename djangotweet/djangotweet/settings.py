@@ -22,10 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^k()3m7cwb5gc5t_9yxxzir1plp_g+1319n-tp8xnlm0$@+k#k'
+SECRET_KEY = os.environ.get("SECRET_KEY") 
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower == "true"
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
@@ -36,8 +37,7 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -110,8 +110,11 @@ DATABASES = {
 
 }
 
-DATABASES["default"] = dj_database_url.parse("postgresql://django_tweet_db_user:mEjXFcWvmOpAUm0kpVTVyjsbPS63iEzJ@dpg-d3oc50hr0fns73c3cbsg-a.singapore-postgres.render.com/django_tweet_db")
+database_url = os.environ.get("DATABASE_URL")
 
+DATABASES["default"] = dj_database_url.parse(database_url)
+
+#
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
