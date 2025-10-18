@@ -54,13 +54,12 @@ INSTALLED_APPS = [
     'theme',
     'crispy_forms',
     'crispy_tailwind',
-    'guest_user',
 
 ]
 
 AUTHENTICATION_BACKENDS=[
     "django.contrib.auth.backends.ModelBackend", 
-    "guest_user.backends.GuestBackend",
+    # "guest_user.backends.GuestBackend",
 ]
 
 MIDDLEWARE = [
@@ -109,13 +108,9 @@ DATABASES = {
        'NAME': BASE_DIR / 'db.sqlite3',
     }
 
-    # 'default': dj_database_url.config(
-    #     # Replace this value with your local database's connection string.
-    #     default='DATABASE_URL',
-    #     conn_max_age=600
-    # )
-
 }
+
+DATABASES["default"] = dj_database_url.parse("postgresql://django_tweet_db_user:mEjXFcWvmOpAUm0kpVTVyjsbPS63iEzJ@dpg-d3oc50hr0fns73c3cbsg-a.singapore-postgres.render.com/django_tweet_db")
 
 
 # Password validation

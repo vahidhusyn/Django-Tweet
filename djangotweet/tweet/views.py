@@ -3,7 +3,6 @@ from .forms import TweetForm, UserRegistrationForm
 from .models import Tweet
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from guest_user.decorators import allow_guest_user
 from django.contrib.auth import login
 
 
