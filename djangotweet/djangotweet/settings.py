@@ -107,10 +107,11 @@ if database_url:
     
     #This was development testing database
     
-    'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / 'db.sqlite3',
-        }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default= database_url,
+        conn_max_age=600
+    )
 
     }    
 
