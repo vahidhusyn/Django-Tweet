@@ -37,7 +37,10 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split("django-tweet-a1fj.onrender.com")
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('django-tweet-a1fj.onrender.com')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
