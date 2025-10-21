@@ -65,6 +65,12 @@ AUTHENTICATION_BACKENDS=[
     # "guest_user.backends.GuestBackend",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://' + RENDER_EXTERNAL_HOSTNAME,
+    
+    #for local testing
+    'http://localhost:8000',
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
