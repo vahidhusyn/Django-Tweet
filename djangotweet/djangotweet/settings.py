@@ -26,7 +26,7 @@ SECRET_KEY = "g$^!=2483v6oy63#bo^!zr9(2yn0etwl-u0w$^)v&2_uh(y5mw"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
@@ -37,7 +37,7 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split("django-tweet-a1fj.onrender.com")
 
 # Application definition
 
