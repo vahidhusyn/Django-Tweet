@@ -22,11 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY") 
+SECRET_KEY = "g$^!=2483v6oy63#bo^!zr9(2yn0etwl-u0w$^)v&2_uh(y5mw"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower == "true"
+DEBUG = True
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
@@ -37,7 +37,7 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -54,13 +54,12 @@ INSTALLED_APPS = [
     'theme',
     'crispy_forms',
     'crispy_tailwind',
-    'guest_user',
 
 ]
 
 AUTHENTICATION_BACKENDS=[
     "django.contrib.auth.backends.ModelBackend", 
-    "guest_user.backends.GuestBackend",
+    # "guest_user.backends.GuestBackend",
 ]
 
 MIDDLEWARE = [
@@ -100,28 +99,32 @@ WSGI_APPLICATION = 'djangotweet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
+database_url = "postgresql://django_tweet_db_user:mEjXFcWvmOpAUm0kpVTVyjsbPS63iEzJ@dpg-d3oc50hr0fns73c3cbsg-a.singapore-postgres.render.com/django_tweet_db"
+
+
+if database_url:
+    DATABASES = {
     
     #This was development testing database
     
     'default': {
        'ENGINE': 'django.db.backends.sqlite3',
        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        }
 
-    # 'default': dj_database_url.config(
-    #     # Replace this value with your local database's connection string.
-    #     default='DATABASE_URL',
-    #     conn_max_age=600
-    # )
+    }    
 
-<<<<<<< HEAD
-database_url = os.environ.get("DATABASE_URL")
-=======
-}
->>>>>>> parent of ca4c8c4 (configured render database and UI changes. STAT WORKING)
+# else:
+#     DATABASES = {
+    
+#         #This was development testing database
+        
+#         'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         }
 
-DATABASES["default"] = dj_database_url.parse(database_url)
+#     }
 
 #
 
