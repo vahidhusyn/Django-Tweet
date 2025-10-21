@@ -54,12 +54,13 @@ INSTALLED_APPS = [
     'theme',
     'crispy_forms',
     'crispy_tailwind',
+    'guest_user',
 
 ]
 
 AUTHENTICATION_BACKENDS=[
     "django.contrib.auth.backends.ModelBackend", 
-    # "guest_user.backends.GuestBackend",
+    "guest_user.backends.GuestBackend",
 ]
 
 MIDDLEWARE = [
@@ -108,9 +109,17 @@ DATABASES = {
        'NAME': BASE_DIR / 'db.sqlite3',
     }
 
-}
+    # 'default': dj_database_url.config(
+    #     # Replace this value with your local database's connection string.
+    #     default='DATABASE_URL',
+    #     conn_max_age=600
+    # )
 
+<<<<<<< HEAD
 database_url = os.environ.get("DATABASE_URL")
+=======
+}
+>>>>>>> parent of ca4c8c4 (configured render database and UI changes. STAT WORKING)
 
 DATABASES["default"] = dj_database_url.parse(database_url)
 
