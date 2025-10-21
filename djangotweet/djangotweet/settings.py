@@ -38,9 +38,17 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('django-tweet-a1fj.onrender.com')
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = []
+
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    CSRF_TRUSTED_ORIGINS.append('https://' + RENDER_EXTERNAL_HOSTNAME)
+else:
+    # fallback for local or first-time deploy
+    ALLOWED_HOSTS.append('django-tweet-a1fj.onrender.com')
+    CSRF_TRUSTED_ORIGINS.append('https://django-tweet-a1fj.onrender.com')
 
 # Application definition
 
@@ -65,12 +73,8 @@ AUTHENTICATION_BACKENDS=[
     # "guest_user.backends.GuestBackend",
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://' + RENDER_EXTERNAL_HOSTNAME,
-    
-    #for local testing
-    'http://localhost:8000',
-]
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
