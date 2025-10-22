@@ -196,7 +196,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # ✅ single folder for collected static files
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'theme' / 'static',  # ✅ your Tailwind build output
+    BASE_DIR / 'theme' / 'static' / 'css' / 'dist',  # ✅ your Tailwind build output
 ]
 
 LOGIN_URL = '/accounts/login'
