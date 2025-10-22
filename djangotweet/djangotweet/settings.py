@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     'theme',
     'crispy_forms',
     'crispy_tailwind',
-
+    'whitenoise.runserver_nostatic',
 ]
 
 AUTHENTICATION_BACKENDS=[
